@@ -11,17 +11,10 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
-    "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.2",
-    "express-session": "^1.17.2",
     "moment": "^2.29.1",
-    "mongoose": "^6.2.2",
-    "nodemon": "^2.0.15",
     "normalize.css": "^8.0.1",
-    "passport": "^0.5.2",
-    "passport-local": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-infinite-scroll-component": "^6.1.0",
@@ -36,9 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev-server": "nodemon ./server/index.js",
-    "prod-server": "node ./server/index.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
