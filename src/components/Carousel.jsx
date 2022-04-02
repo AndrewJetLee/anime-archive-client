@@ -11,10 +11,6 @@ import { useNavigate } from "react-router-dom";
 const Carousel = ({ title, data, loading }) => {
   const navigate = useNavigate();
 
-  const handleClickTitle = () => {
-    navigate("/")
-  }
-
   return (
     <Container>
       <Title >{title}</Title>
