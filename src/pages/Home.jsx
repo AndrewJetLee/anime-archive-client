@@ -23,11 +23,13 @@ const Home = () => {
       const seasonalAnime = await jikanRequest.get("/seasons/now");
       const upcomingAnime = await jikanRequest.get("/seasons/upcoming");
       const trendingAnime = await jikanRequest.get("/top/anime");
-      const trendingManga = await jikanRequest.get("/top/manga");
-      setTrendingManga(trendingManga.data.data);
       setSeasonalAnime(seasonalAnime.data.data);
       setUpcomingAnime(upcomingAnime.data.data);
       setTrendingAnime(trendingAnime.data.data);
+      setTimeout(async () => {
+        const trendingManga = await jikanRequest.get("/top/manga");
+        setTrendingManga(trendingManga.data.data);
+      }, 1000)
       setLoading(false);
     } catch (err) {
       console.log(err);
