@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const BASE_URL = "https://aa-anime-archive.herokuapp.com/api/"
+const environment = process.env.NODE_ENV;
+export const BASE_URL = environment === "production" ? "https://aa-anime-archive.herokuapp.com/api/" : "http://localhost:4000/api/"
 export const ANIME_API = "http://kitsu.io/api/edge/"
 export const JIKAN_API = "https://api.jikan.moe/v4/"
 
