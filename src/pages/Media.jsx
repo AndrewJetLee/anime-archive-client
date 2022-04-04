@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { publicRequest, jikanRequest } from "../requestMethods";
 import Nav from "../components/Nav";
@@ -24,7 +24,6 @@ const Media = () => {
   const [episodesWatched, setEpisodesWatched] = useState(0);
   const [error, toggleError] = useState(false);
 
-  const isMounted = useRef(true);
   const item = location.state;
 
   useEffect(() => {
@@ -32,16 +31,11 @@ const Media = () => {
   }, []);
 
   useEffect(() => {
-    if (isMounted.current) {
-      if (type === "characters") {
-        getVoiceActors();
-      } else {
-        getReviews();
-      }
+    if (type === "characters") {
+      getVoiceActors();
+    } else {
+      getReviews();
     }
-    return () => {
-      isMounted.current = false;
-    };
   }, [type, id]);
 
   const handleError = async () => {

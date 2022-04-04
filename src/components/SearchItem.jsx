@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import PersonIcon from "@mui/icons-material/Person";
 import Modal from "./Modal";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Alert from "./Alert";
 
 const SearchItem = ({ item, user }) => {
@@ -12,21 +12,14 @@ const SearchItem = ({ item, user }) => {
   const [modal, toggleModal] = useState(false);
   const [alertStatus, toggleAlertStatus] = useState(false);
   const [type, setType] = useState(null);
-  const isMounted = useRef(true);
-
   useEffect(() => {
-    if (isMounted.current) {
-      if (item.episodes || item.episodes === null) {
-        setType("anime");
-      } else if (item.chapters || item.chapters === null) {
-        setType("manga");
-      } else {
-        setType("characters");
-      }
+    if (item.episodes || item.episodes === null) {
+      setType("anime");
+    } else if (item.chapters || item.chapters === null) {
+      setType("manga");
+    } else {
+      setType("characters");
     }
-    return () => {
-      isMounted.current = false;
-    };
   }, []);
 
   const handleClick = async (e) => {

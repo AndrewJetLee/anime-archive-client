@@ -148,7 +148,11 @@ const UserAnimeList = () => {
       </Header>
       <Wrapper>
         <AnimeList>
-          { loading && <Loading><CircularProgress color="inherit"></CircularProgress></Loading>}
+          {loading && (
+            <Loading>
+              <CircularProgress color="inherit"></CircularProgress>
+            </Loading>
+          )}
           {!loading && filteredList.length === 0 && (
             <NoList>
               <NoListContent>
@@ -156,20 +160,23 @@ const UserAnimeList = () => {
                 <NoListText>
                   No anime found. Try adding more anime to your list first!
                 </NoListText>
-                <NoListButton href="/browse/top/anime">Browse Anime</NoListButton>
+                <NoListButton href="/browse/top/anime">
+                  Browse Anime
+                </NoListButton>
               </NoListContent>
             </NoList>
           )}
-          { !loading && filteredList.map((item, i) => (
-            <UserListItem
-              item={item}
-              key={i}
-              number={i + 1}
-              handleDelete={handleDelete}
-              getList={getList}
-              filteredList={filteredList}
-            />
-          ))}
+          {!loading &&
+            filteredList.map((item, i) => (
+              <UserListItem
+                item={item}
+                key={i}
+                number={i + 1}
+                handleDelete={handleDelete}
+                getList={getList}
+                filteredList={filteredList}
+              />
+            ))}
         </AnimeList>
       </Wrapper>
       <Footer />
@@ -351,22 +358,22 @@ const NoListButton = styled.a`
   background-color: ${(props) => props.theme.tertiary};
   padding: 12px 30px;
   font-size: 1.8rem;
-  font-weight: 600;  
+  font-weight: 600;
   color: white;
   cursor: pointer;
   border-radius: 2px;
   width: 100%;
   text-align: center;
   border-radius: 4px;
-  transition: opacity .167s ease-in-out;
+  transition: opacity 0.167s ease-in-out;
   :hover {
     color: white;
-    opacity: .8;
+    opacity: 0.8;
   }
 `;
 
 const Loading = styled.div`
   display: flex;
   justify-content: center;
-  color: ${props => props.theme.tertiary}
-`
+  color: ${(props) => props.theme.tertiary};
+`;

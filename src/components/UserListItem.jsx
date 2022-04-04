@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Modal";
 import Alert from "../components/Alert";
 import { jikanRequest } from "../requestMethods";
@@ -18,15 +18,9 @@ const UserListItem = ({
   const [media, setMedia] = useState(item);
   const [modal, toggleModal] = useState(false);
   const [alertStatus, toggleAlertStatus] = useState(false);
-  const isMounted = useRef(true);
 
   useEffect(() => {
-    if (isMounted.current) {
       setMedia(item);
-    }
-    return (() => {
-      isMounted.current = false;
-    })
   }, [filteredList]);
 
   const handleClick = async (e) => {

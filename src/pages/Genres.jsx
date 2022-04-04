@@ -230,7 +230,7 @@ const Genres = () => {
                   onClick={
                     !clickedFilter
                       ? () => handleClickGenre(genre.mal_id, genre.name)
-                      : (e) => console.log(e.target.value)
+                      : null
                   }
                 >
                   {`${genre.name} `}({genre.count})
