@@ -7,27 +7,28 @@ import CarouselItem from "./CarouselItem";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
-
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Carousel = ({ title, data, loading, innerRef, myElementIsVisible }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (title === "Currently Airing") {
-      navigate("/anime/season")
+      navigate("/anime/season");
     } else if (title === "Upcoming Anime") {
-      navigate("/anime/season")
-      // setActiveSeason to the next season
+      navigate("/anime/season");
     } else if (title === "Popular Anime") {
-       navigate("/browse/top/anime")
+      navigate("/browse/top/anime");
     } else {
-      navigate("/browse/top/manga")
+      navigate("/browse/top/manga");
     }
-  }
+  };
 
   return (
     <Container>
-      <Title ref={innerRef} onClick={handleClick}>{title}</Title>
+      <Title ref={innerRef} onClick={handleClick}>
+        {title} <KeyboardArrowRightIcon className="rightIcon" />
+      </Title>
       <Swiper
         navigation={true}
         modules={[Navigation]}
@@ -63,18 +64,36 @@ export default Carousel;
 
 const Container = styled.div`
   margin-bottom: 20px;
-  .swiper-button-prev, .swiper-button-next {
-    color: ${props => props.theme.tertiary};
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: ${(props) => props.theme.tertiary};
   }
 `;
 
 export const Title = styled.h2`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-transform: uppercase;
   font-size: ${(props) => (props.size ? props.size : "1.7rem")};
   padding-bottom: 5px;
   background-color: ${(props) => props.theme.secondary};
   padding: ${(props) => (props.padding ? props.padding : "12px")};
   border-left: 3px solid ${(props) => props.theme.tertiary};
+  transition: all 0.167s ease-in-out;
+  cursor: pointer;
+  .rightIcon {
+    font-size: 2.4rem;
+    color: black;
+    transition: color 0.167s ease-in-out;
+  }
+  :hover {
+    background-color: #e6e3e3;
+    color: ${(props) => props.theme.tertiary};
+    .rightIcon {
+      color: ${(props) => props.theme.tertiary};
+    }
+  }
 `;
 
 const SkeletonCarouselItem = styled.div`
@@ -84,7 +103,7 @@ const SkeletonCarouselItem = styled.div`
   transition-property: opacity;
   transition-duration: 0.16s;
   position: relative;
-  height: 290px;;
+  height: 290px;
   cursor: pointer;
   :hover {
     opacity: 0.5;
