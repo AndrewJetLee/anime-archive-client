@@ -12,9 +12,22 @@ import { useNavigate } from "react-router-dom";
 const Carousel = ({ title, data, loading, innerRef, myElementIsVisible }) => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    if (title === "Currently Airing") {
+      navigate("/anime/season")
+    } else if (title === "Upcoming Anime") {
+      navigate("/anime/season")
+      // setActiveSeason to the next season
+    } else if (title === "Popular Anime") {
+       navigate("/browse/top/anime")
+    } else {
+      navigate("/browse/top/manga")
+    }
+  }
+
   return (
     <Container>
-      <Title ref={innerRef}>{title}</Title>
+      <Title ref={innerRef} onClick={handleClick}>{title}</Title>
       <Swiper
         navigation={true}
         modules={[Navigation]}
