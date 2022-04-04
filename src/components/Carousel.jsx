@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import "swiper/css";
 import "swiper/css/navigation";
 import CarouselItem from "./CarouselItem";
@@ -9,7 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-const Carousel = ({ title, data, loading, innerRef, myElementIsVisible }) => {
+const Carousel = ({ title, data, loading, innerRef, myElementIsVisible, home }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -26,7 +26,7 @@ const Carousel = ({ title, data, loading, innerRef, myElementIsVisible }) => {
 
   return (
     <Container>
-      <Title ref={innerRef} onClick={handleClick}>
+      <Title ref={innerRef} onClick={handleClick} home={home}>
         {title} <KeyboardArrowRightIcon className="rightIcon" />
       </Title>
       <Swiper
@@ -80,20 +80,24 @@ export const Title = styled.h2`
   background-color: ${(props) => props.theme.secondary};
   padding: ${(props) => (props.padding ? props.padding : "12px")};
   border-left: 3px solid ${(props) => props.theme.tertiary};
-  transition: all 0.167s ease-in-out;
-  cursor: pointer;
-  .rightIcon {
-    font-size: 2.4rem;
-    color: black;
-    transition: color 0.167s ease-in-out;
-  }
-  :hover {
-    background-color: #e6e3e3;
-    color: ${(props) => props.theme.tertiary};
-    .rightIcon {
-      color: ${(props) => props.theme.tertiary};
-    }
-  }
+  ${(props) =>
+    props.home &&
+    css`
+      transition: all 0.167s ease-in-out;
+      cursor: pointer;
+      .rightIcon {
+        font-size: 2.4rem;
+        color: black;
+        transition: color 0.167s ease-in-out;
+      }
+      :hover {
+        background-color: #e6e3e3;
+        color: ${(props) => props.theme.tertiary};
+        .rightIcon {
+          color: ${(props) => props.theme.tertiary};
+        }
+      }
+    `}
 `;
 
 const SkeletonCarouselItem = styled.div`

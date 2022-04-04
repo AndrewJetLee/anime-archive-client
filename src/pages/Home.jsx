@@ -66,16 +66,19 @@ const Home = () => {
           title={"Currently Airing"}
           data={seasonalAnime}
           loading={loading}
+          home={true}
         />
         <Carousel
           title={"Upcoming Anime"}
           data={upcomingAnime}
           loading={loading}
+          home={true}
         />
         <Carousel
           title={"Popular Anime"}
           data={trendingAnime}
           loading={loading}
+          home={true}
         />
         <Carousel
           innerRef={popularMangaRef}
@@ -83,6 +86,7 @@ const Home = () => {
           data={trendingManga}
           loading={loading}
           myElementIsVisible={myElementIsVisible}
+          home={true}
         />
       </Wrapper>
       <Footer />

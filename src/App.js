@@ -6,7 +6,7 @@ import Search from "./pages/Search";
 import Media from "./pages/Media";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import UserAnimeList from "./pages/AnimeUserList";
+import UserAnimeList from "./pages/UserAnimeList";
 import Browse from "./pages/Browse";
 import Genres from "./pages/Genres";
 import Genre from "./pages/Genre";
