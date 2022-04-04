@@ -12,6 +12,7 @@ const Home = () => {
   const [upcomingAnime, setUpcomingAnime] = useState([]);
   const [trendingAnime, setTrendingAnime] = useState([]);
   const [trendingManga, setTrendingManga] = useState([]);
+  const [myElementIsVisible, updateMyElementIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,17 +20,18 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log('myRef', popularMangaRef.current);
-  }, []);
-
-  useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       console.log('entry', entry);
       console.log('entry.isIntersecting', entry.isIntersecting);
+      updateMyElementIsVisible(entry.isIntersecting);
     });
     observer.observe(popularMangaRef.current);
   }, []);
+
+  useEffect(() => {
+    getLazyMedia();
+  }, [myElementIsVisible]);
 
   const getAllMedia = async () => {
     try {
@@ -40,15 +42,20 @@ const Home = () => {
       setSeasonalAnime(seasonalAnime.data.data);
       setUpcomingAnime(upcomingAnime.data.data);
       setTrendingAnime(trendingAnime.data.data);
-      setTimeout(async () => {
-        const trendingManga = await jikanRequest.get("/top/manga");
-        setTrendingManga(trendingManga.data.data);
-      }, 1000)
       setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const getLazyMedia = async () => {
+    try {
+      const trendingManga = await jikanRequest.get("/top/manga");
+      setTrendingManga(trendingManga.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <Container>
@@ -75,6 +82,7 @@ const Home = () => {
           title={"Popular Manga"}
           data={trendingManga}
           loading={loading}
+          myElementIsVisible={myElementIsVisible}
         />
       </Wrapper>
       <Footer />

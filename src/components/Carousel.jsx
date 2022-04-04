@@ -9,7 +9,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 
 
-const Carousel = ({ title, data, loading, innerRef }) => {
+const Carousel = ({ title, data, loading, innerRef, myElementIsVisible }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,7 +24,7 @@ const Carousel = ({ title, data, loading, innerRef }) => {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {loading ? (
+        {loading || myElementIsVisible === false ? (
           <>
             {new Array(10).fill(" ").map((item, i) => (
               <SwiperSlide key={i}>
