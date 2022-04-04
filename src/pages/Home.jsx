@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import { jikanRequest } from "../requestMethods";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Hero from "../components/Hero";
 
 const Home = () => {
+  const popularMangaRef = useRef();
   const [seasonalAnime, setSeasonalAnime] = useState([]);
   const [upcomingAnime, setUpcomingAnime] = useState([]);
   const [trendingAnime, setTrendingAnime] = useState([]);
@@ -15,6 +16,19 @@ const Home = () => {
 
   useEffect(() => {
     getAllMedia();
+  }, []);
+
+  useEffect(() => {
+    console.log('myRef', popularMangaRef.current);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      console.log('entry', entry);
+      console.log('entry.isIntersecting', entry.isIntersecting);
+    });
+    observer.observe(popularMangaRef.current);
   }, []);
 
   const getAllMedia = async () => {
@@ -57,6 +71,7 @@ const Home = () => {
           loading={loading}
         />
         <Carousel
+          innerRef={popularMangaRef}
           title={"Popular Manga"}
           data={trendingManga}
           loading={loading}

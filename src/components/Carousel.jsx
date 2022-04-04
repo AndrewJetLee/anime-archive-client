@@ -8,12 +8,13 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 
-const Carousel = ({ title, data, loading }) => {
+
+const Carousel = ({ title, data, loading, innerRef }) => {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Title >{title}</Title>
+      <Title ref={innerRef}>{title}</Title>
       <Swiper
         navigation={true}
         modules={[Navigation]}
