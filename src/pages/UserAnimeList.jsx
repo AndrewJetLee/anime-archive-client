@@ -156,7 +156,7 @@ const UserAnimeList = () => {
           {!loading && filteredList.length === 0 && (
             <NoList>
               <NoListContent>
-                <NoListImg src="/images/aa-tohru-point.png" />
+                <NoListImg src="/images/aa-girl-surprised.png" />
                 <NoListText>
                   No anime found. Try adding more anime to your list first!
                 </NoListText>
@@ -344,9 +344,9 @@ const NoListContent = styled.div`
 
 const NoListImg = styled.img`
   background: transparent;
-  object-fit: contain;
+  object-fit: fill;
   height: 100%;
-  width: 300px;
+  width: 250px;
 `;
 
 const NoListText = styled.p`
