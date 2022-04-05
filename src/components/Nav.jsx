@@ -5,11 +5,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ErrorOutlinedIcon from "@mui/icons-material/ErrorOutlined";
 import NavItem from "./NavItem";
+// import Darkmode from "darkmode-js";
+// new Darkmode().showWidget();
 
 const Nav = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [error, toggleError] = useState(false);
+  
 
   const user = JSON.parse(sessionStorage?.getItem("user"));
 

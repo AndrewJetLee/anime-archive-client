@@ -68,7 +68,7 @@ const SearchBar = ({ filters, genreFilter, type }) => {
   };
 
   return (
-    <Container>
+    <Container onSubmit={handleSearch}>
       <InputWrapper>
         <Input
           placeholder={type === "anime" ? "Search Anime" : "Search Manga"}
