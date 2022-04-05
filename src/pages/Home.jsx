@@ -22,9 +22,7 @@ const Home = () => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      console.log('entry', entry);
-      console.log('entry.isIntersecting', entry.isIntersecting);
-      updateMyElementIsVisible(entry.isIntersecting);
+      if (entry.isIntersecting) updateMyElementIsVisible(true);
     });
     observer.observe(popularMangaRef.current);
   }, []);

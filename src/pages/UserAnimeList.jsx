@@ -372,7 +372,7 @@ const NoListButton = styled.a`
   }
 `;
 
-const Loading = styled.div`
+export const Loading = styled.div`
   display: flex;
   justify-content: center;
   color: ${(props) => props.theme.tertiary};

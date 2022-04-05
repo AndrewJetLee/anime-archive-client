@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { publicRequest, jikanRequest } from "../requestMethods";
 import Nav from "../components/Nav";
@@ -10,11 +10,12 @@ import { Error } from "../components/Nav";
 import ErrorOutlinedIcon from "@mui/icons-material/ErrorOutlined";
 import Alert from "../components/Alert";
 import { More } from "./Search";
+import { CircularProgress } from "@mui/material";
 
 const Media = () => {
   const location = useLocation();
   const { type, id } = useParams();
-
+  const reviewRef = useRef();
   const [reviews, setReviews] = useState([]);
   const [reviewsPagination, setReviewsPagination] = useState({});
   const [voiceActors, setVoiceActors] = useState([]);
@@ -23,20 +24,31 @@ const Media = () => {
   const [ratingDropdown, setRatingDropdown] = useState("");
   const [episodesWatched, setEpisodesWatched] = useState(0);
   const [error, toggleError] = useState(false);
+  const [myElementIsVisible, updateMyElementIsVisible] = useState(false);
+  const [loading, toggleLoading] = useState(false);
 
   const item = location.state;
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) updateMyElementIsVisible(true);
+    });
+    observer.observe(reviewRef.current);
   }, []);
 
   useEffect(() => {
+    handleLazyLoading();
+  }, [myElementIsVisible]);
+
+  const handleLazyLoading = async () => {
     if (type === "characters") {
       getVoiceActors();
     } else {
       getReviews();
     }
-  }, [type, id]);
+  };
 
   const handleError = async () => {
     toggleError(true);
@@ -61,7 +73,6 @@ const Media = () => {
         },
       };
       const res = await publicRequest.put("/user/list", payload);
-      console.log(res);
       toggleAlert(true);
       setTimeout(() => toggleAlert(false), 4000);
     } catch (err) {
@@ -71,19 +82,19 @@ const Media = () => {
 
   const getReviews = async (page) => {
     try {
+      toggleLoading(true);
       if (page) {
         const res = await jikanRequest.get(
           `/${type}/${id}/reviews?page=${page}`
         );
-        console.log(res);
         setReviews((prevReviews) => [...prevReviews, ...res.data.data]);
         setReviewsPagination(res.data.pagination);
       } else {
         const res = await jikanRequest.get(`/${type}/${id}/reviews`);
-        console.log(res);
         setReviews(res.data.data);
         setReviewsPagination(res.data.pagination);
       }
+      toggleLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -91,9 +102,10 @@ const Media = () => {
 
   const getVoiceActors = async () => {
     try {
+      toggleLoading(true);
       const res = await jikanRequest.get(`/${type}/${id}/voices`);
       setVoiceActors(res.data.data);
-      console.log(res);
+      toggleLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -415,15 +427,24 @@ const Media = () => {
             ) : null}
 
             <Reviews>
-              <h5>Reviews</h5>
-              {reviews.length > 0 ? (
+              <h5 ref={reviewRef}>Reviews</h5>
+              {loading && (
+                <Loading>
+                  <CircularProgress color="inherit" />
+                </Loading>
+              )}
+              {reviews.length > 0 && myElementIsVisible && !loading ? (
                 <>
                   {reviews.map((review, i) => (
                     <Review review={review} key={i}></Review>
                   ))}
                 </>
               ) : (
-                <p>No reviews have been submitted yet for this title</p>
+                <>
+                  {!loading && (
+                    <p>No reviews have been submitted yet for this title</p>
+                  )}
+                </>
               )}
             </Reviews>
             {reviewsPagination.has_next_page && (
@@ -698,3 +719,9 @@ const VideoWrapper = styled(Synopsis)`
 `;
 
 const Reviews = styled(Synopsis)``;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  color: ${(props) => props.theme.tertiary};
+`;
