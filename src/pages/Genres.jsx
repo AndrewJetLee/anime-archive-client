@@ -245,7 +245,7 @@ const Genres = () => {
                         "&.Mui-checked": {
                           color: "white",
                         },
-                        "& .MuiSvgIcon-root": { fontSize: 24 },
+                        "& .MuiSvgIcon-root": { fontSize: 22 },
                       }}
                       onChange={(e) =>
                         !genreFilter.includes(e.target.value)

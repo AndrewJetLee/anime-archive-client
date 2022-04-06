@@ -28,7 +28,6 @@ const Media = () => {
   const [loading, toggleLoading] = useState(false);
 
   const item = location.state;
-  console.log(item);
 
   useEffect(() => {
     window.scrollTo(0, 0);

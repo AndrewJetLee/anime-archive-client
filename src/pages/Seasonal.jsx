@@ -227,6 +227,11 @@ const SelectSeasonButton = styled.button`
   background-color: ${(props) => props.theme.tertiary};
   color: white;
   height: 30px;
+  cursor: pointer;
+  transition: opacity 0.167s ease-in-out;
+  :hover {
+    opacity: .8;
+  }
 `;
 
 const Content = styled.main``;
