@@ -35,8 +35,6 @@ const Carousel = ({ title, data, loading, innerRef, myElementIsVisible, home }) 
         spaceBetween={10}
         slidesPerGroup={7}
         slidesPerView={7}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         {loading || myElementIsVisible === false ? (
           <>
