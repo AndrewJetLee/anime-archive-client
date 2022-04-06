@@ -14,8 +14,8 @@ import { CircularProgress } from "@mui/material";
 
 const Media = () => {
   const location = useLocation();
-  const { type, id } = useParams();
   const reviewRef = useRef();
+  const { type, id } = useParams();
   const [reviews, setReviews] = useState([]);
   const [reviewsPagination, setReviewsPagination] = useState({});
   const [voiceActors, setVoiceActors] = useState([]);
@@ -28,6 +28,7 @@ const Media = () => {
   const [loading, toggleLoading] = useState(false);
 
   const item = location.state;
+  console.log(item);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -125,7 +126,7 @@ const Media = () => {
       <Wrapper>
         <Left>
           <ImageWrapper>
-            <Image src={item.images.jpg.image_url} />
+            <Image src={item.images.jpg.large_image_url ? item.images.jpg.large_image_url : item.images.jpg.image_url} />
           </ImageWrapper>
           {type === "anime" && (
             <AddToListWrapper>
@@ -347,7 +348,7 @@ const Media = () => {
             <Synopsis>
               <p>{item.about}</p>
             </Synopsis>
-            <Title>Voice Actors</Title>
+            <Title ref={reviewRef}>Voice Actors</Title>
             <VoiceActors>
               {voiceActors.map((va, i) => (
                 <VoiceActor key={i}>

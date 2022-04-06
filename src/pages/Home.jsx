@@ -35,10 +35,10 @@ const Home = () => {
     try {
       setLoading(true);
       const seasonalAnime = await jikanRequest.get("/seasons/now");
-      const upcomingAnime = await jikanRequest.get("/seasons/upcoming");
-      const trendingAnime = await jikanRequest.get("/top/anime");
       setSeasonalAnime(seasonalAnime.data.data);
+      const upcomingAnime = await jikanRequest.get("/seasons/upcoming");
       setUpcomingAnime(upcomingAnime.data.data);
+      const trendingAnime = await jikanRequest.get("/top/anime");
       setTrendingAnime(trendingAnime.data.data);
       setLoading(false);
     } catch (err) {
