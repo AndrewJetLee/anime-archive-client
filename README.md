@@ -1,15 +1,30 @@
 # anime-archive-client
-Write a short sentence or two about this project and what it does. Be sure to include a link and a screenshot (we're front end devs so we can actually see our work!).
+An application that allows users to find information about their favorite anime or manga and save it into a personalized list
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:** https://anime-archive.netlify.app/
 
-![alt tag](http://placecorgi.com/1200/650)
+![aa-home-page](https://user-images.githubusercontent.com/73206753/162072871-f7d62e42-525c-40e6-872d-d8504da2d969.gif)
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Framework of choice
+**Tech used:** 
+Front-end: HTML, CSS, JavaScript, React, Styled-Components, Material UI
+Back-end: MongoDB, Node, Express, Passport
 
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write *something*. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.
+The home page uses React states and refs to implement lazy skeleton loading upon scroll to a particular element on the page. This was done in order to circumvent the rate limitation of the Jikan API (three calls per second). The Swiper library was also used to create the carousels that are "swipable" on touch-screen devices. 
+
+![aa-home-page](https://user-images.githubusercontent.com/73206753/162072871-f7d62e42-525c-40e6-872d-d8504da2d969.gif)
+
+React was particularly useful in creating reusable components that were recycled in multiple pages. One such instance is the "List" component of media elements on the browse page. This list component also has infinite scroll capability that did not need to be implemented more than one time. 
+
+![aa-browse-page](https://user-images.githubusercontent.com/73206753/162075224-4cd63406-021b-4b56-bb76-f4e8c085e1da.gif)
+
+The various hooks that the React API provides allowed me to trigger API calls upon state changes. An example of this is on the seasonal page where upon selection of a different season, the page dynamically renders using a different set of data received from the Jikan API. Functional programming constructs were also used clientside to filter this set of data in order to sort them according to certain parameters. As previously stated, this page also reuses the "List" component, which cut down on the generic code necessary for this page. 
+
+![aa-seasonal-page](https://user-images.githubusercontent.com/73206753/162076015-d9471083-b616-4285-a51a-0a678bff14d3.gif)
+
+
+
 
 ## Optimizations
 *(optional)*
