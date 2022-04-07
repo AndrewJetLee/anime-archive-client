@@ -23,6 +23,28 @@ The various hooks that the React API provides allowed me to trigger API calls up
 
 ![aa-seasonal-page](https://user-images.githubusercontent.com/73206753/162076015-d9471083-b616-4285-a51a-0a678bff14d3.gif)
 
+The search page can filter results by multiple parameters including genre, type, status, rating and also sort these results by score, popularity, title, and rank. 
+
+![aa-anime-search](https://user-images.githubusercontent.com/73206753/162096544-609a7208-ecaa-4a71-96cf-bc33e64308f0.gif)
+
+A more general search bar also exists on the nav that searches for anime, manga, and/or characters associated with the inputed query. 
+
+![aa-nav-search](https://user-images.githubusercontent.com/73206753/162097298-1075dd1a-b039-41f6-a5e1-66215b0e2d58.gif)
+
+Jikan API did not have full CRUD functionality in regards to user account information and personalized list, so a REST API following the MVC paradigm was created using Node, MongoDB and Mongoose. 
+Information validation for registration uses REGEX clientside and passport's local strategy serverside. 
+Encryption of sensitive information done using Node's Crypto library
+User authentication to access protected routes utilizes session-cookie based authentication. 
+
+![aa-register](https://user-images.githubusercontent.com/73206753/162097477-7821dd48-d7ee-4ff9-8409-54eca45f9e0f.gif)
+
+User anime list has full CRUD functionality. 
+
+![aa-userlist-crud](https://user-images.githubusercontent.com/73206753/162099678-912fe839-2274-42db-b4bd-328c07b2895e.gif)
+
+User list can also be filtered
+
+![aa-userlist-filter](https://user-images.githubusercontent.com/73206753/162099745-d3f1500f-dcdc-4460-85eb-1be7e0e643c6.gif)
 
 
 
