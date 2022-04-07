@@ -7,9 +7,9 @@ An application that allows users to find information about their favorite anime 
 
 ## How It's Made:
 
-**Tech used:** 
-Front-end: HTML, CSS, JavaScript, React, Styled-Components, Material UI
-Back-end: MongoDB, Node, Express, Passport
+**Front-end:** HTML, CSS, JavaScript, React, Styled-Components, Material UI
+
+**Back-end:** MongoDB, Node, Express, Passport
 
 The home page uses React states and refs to implement lazy skeleton loading upon scroll to a particular element on the page. This was done in order to circumvent the rate limitation of the Jikan API (three calls per second). The Swiper library was also used to create the carousels that are "swipable" on touch-screen devices. 
 
