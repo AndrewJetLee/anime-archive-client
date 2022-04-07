@@ -74,8 +74,8 @@ An application that allows users to find information about their favorite anime 
 ![aa-browse-page](https://user-images.githubusercontent.com/73206753/162075224-4cd63406-021b-4b56-bb76-f4e8c085e1da.gif)
 
 * React was particularly useful in creating reusable components that were recycled in multiple pages. 
-* One such instance is the "List" component of media elements on the browse page. 
-* This list component also has infinite scroll capability that did not need to be implemented more than one time. 
+** E.g. List component as shown above that renders a grid layout of media elements on the browse page. 
+* This List component also has infinite scroll capability only needed to be implemented once. 
 
 ![aa-seasonal-page](https://user-images.githubusercontent.com/73206753/162076015-d9471083-b616-4285-a51a-0a678bff14d3.gif)
 
