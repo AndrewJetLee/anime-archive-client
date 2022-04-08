@@ -8,7 +8,7 @@
   <h3 align="center">Anime Archive</h3>
 
   <p align="center">
-    Voting has never been more accessible or more secure than with Secure Your Vote!
+    Totally not just MAL
     <br />
     <a href="https://github.com/AndrewJetLee/anime-archive-client/"><strong>Explore the docs »</strong></a>
     <br />
@@ -42,8 +42,8 @@
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#optimizations">Optimizations</a></li>
+    <li><a href="#license">Lessons Learned</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
@@ -57,7 +57,8 @@
 
 ![aa-homepage-image](https://user-images.githubusercontent.com/73206753/162338698-f42dab4d-c0a8-4792-9f73-eff9536b8191.png)
 
-An application that allows users to find information about their favorite anime or manga and save it into a personalized list
+An application that gives users the ability to find information about their favorite anime or manga including seasonal information  and save it into a personalized list
+
 Our App gives users the ability to sign-up and sign-in securely, get polling info, register to vote with the US government and be able to view specific election information for elections in their area. Then if a user has been validated living in the United States, they will be able to vote directly in the app securely.
 
 **Objectives:** 
@@ -104,10 +105,20 @@ Or for production:
 npm run build
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
 **Note:** The client can run independently from the server. The only features you will not be able to manage are anything related to user creation and authentication (registration, login, user anime list, etc...). The server will only function if the DB_STRING and SESSION_SECRET variables are set in your .env file. It is recommended to peruse the deployed application (https://anime-archive.netlify.app/) instead of trying to get the application running on your local machine.  
 
+<!-- USAGE EXAMPLES -->
+## Usage
 
-## Walkthrough
+
+### Summary
+Our App gives users the ability to sign-up and sign-in securely, get polling info, register to vote with the US government and be able to view specific election information for elections in their area. Then if a user has been validated living in the United States, they will be able to vote directly in the app securely.   
+
+
+### Walkthrough
 
 
 * Homepage uses react states and refs to implement lazy skeleton loading upon scroll to a particular element on the page in order to circumvent the rate-limitation of the Jikan API.
@@ -142,40 +153,60 @@ npm run build
 ![aa-nav-search](https://user-images.githubusercontent.com/73206753/162097298-1075dd1a-b039-41f6-a5e1-66215b0e2d58.gif)
 
 
-Jikan API did not have full CRUD functionality in regards to user account information and personalized list, so a REST API following the MVC paradigm was created using Node, MongoDB and Mongoose. 
-Information validation for registration uses REGEX clientside and passport's local strategy serverside. 
-Encryption of sensitive information done using Node's Crypto library
-User authentication to access protected routes utilizes session-cookie based authentication. 
+* A MVC structured REST API was created using Node, MongoDB and Mongoose to accomodate for Jikan API's lack of CRUD functionality in regards to user information and data.
+* Information validation for registration uses REGEX clientside and passport's local strategy serverside. 
+* Encryption of sensitive information performed using Node's Crypto library
+* User authentication to access protected routes utilizes session-cookie based authentication. 
 
 ![aa-register](https://user-images.githubusercontent.com/73206753/162097477-7821dd48-d7ee-4ff9-8409-54eca45f9e0f.gif)
 
 
-User anime list has full CRUD functionality. 
+* User anime list has full CRUD functionality. 
 
 ![aa-userlist-crud](https://user-images.githubusercontent.com/73206753/162099678-912fe839-2274-42db-b4bd-328c07b2895e.gif)
 
 
-User list can also be filtered
+* User list can also be filtered
 
 ![aa-userlist-filter](https://user-images.githubusercontent.com/73206753/162099745-d3f1500f-dcdc-4460-85eb-1be7e0e643c6.gif)
 
 
-## Optimizations
-*(optional)*
+<!-- ROADMAP -->
+## Roadmap
 
-You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews!
+- [ ] Make Mobile Responsive
+- [ ] Implement cloud storage for images for profile custimization
+- [ ] Allow lists to be created for Manga and Characters
+- [ ] Horizontal Load balancing 
+
+
+
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+
+
+## Optimizations
+
+<!-- You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews! -->
+
+**Implemented:**
+* Lazy loading of components allowed for a lower perceived loading time and reduced the number of API requests per second to accomodate for the rate-limitation of the Jikan API. 
+
+
+**Potential:**
+* This project serves only as a showcase. If the application was intended to go live and expect higher web loads, horizontal scaling through multiple deployments of the server should be implemented. 
+* NGINX can also be used as a load-balancer if performance needs to be further improved.
+* Database indexing and caching may also be used if data capacity grows too large.
+
 
 ## Lessons Learned:
 
 No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
 
-## Examples:
-Take a look at these couple examples that I have in my own portfolio:
+<!-- CONTACT -->
+## Contact
 
-**Palettable:** https://github.com/alecortega/palettable
+Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-**Twitter Battle:** https://github.com/alecortega/twitter-battle
-
-**Patch Panel:** https://github.com/alecortega/patch-panel
+Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
 
