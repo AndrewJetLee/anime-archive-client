@@ -43,9 +43,8 @@
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#optimizations">Optimizations</a></li>
-    <li><a href="#license">Lessons Learned</a></li>
+    <li><a href="#lessons-learned">Lessons Learned</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -57,9 +56,8 @@
 
 ![aa-homepage-image](https://user-images.githubusercontent.com/73206753/162338698-f42dab4d-c0a8-4792-9f73-eff9536b8191.png)
 
-An application that gives users the ability to find information about their favorite anime or manga including seasonal information  and save it into a personalized list
+An application that provides its users with the ability to find information about their favorite anime and manga and organize them in a user personalized list. 
 
-Our App gives users the ability to sign-up and sign-in securely, get polling info, register to vote with the US government and be able to view specific election information for elections in their area. Then if a user has been validated living in the United States, they will be able to vote directly in the app securely.
 
 **Objectives:** 
 * Create MERN application from scratch that utilizes an external public API
@@ -190,23 +188,30 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 **Implemented:**
 * Lazy loading of components allowed for a lower perceived loading time and reduced the number of API requests per second to accomodate for the rate-limitation of the Jikan API. 
+* Divided code in certain pages to separate react components to prevent the entire page from reloading on state changes on that specific component. Many of these components were also reused in various pages on the application.   
 
 
 **Potential:**
 * This project serves only as a showcase. If the application was intended to go live and expect higher web loads, horizontal scaling through multiple deployments of the server should be implemented. 
 * NGINX can also be used as a load-balancer if performance needs to be further improved.
 * Database indexing and caching may also be used if data capacity grows too large.
+* Global state management (e.g. React Context or Redux) has the potential to significantly reduce redundant code 
 
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
+<!-- No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those *whoa this is awesome* or *fuck yeah I did it!* moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing. -->
+
+* First time working with a rate-limiting API. Ultimately decided to employ lazy loading of components to reduce the number of immediate API requests. 
+* Gained a much better understanding of how session-cookie based user authentication worked and how to debug cookie related issues. 
+* Worked with more complex conditional logic, especially in relation to state dependent conditional CSS rendering of styled components. 
+
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Andrew Lee - [linkedin](https://www.linkedin.com/in/andrewjetlee/) - andrewjetlee777@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/your_username/repo_name](https://github.com/AndrewJetLee/anime-archive-client/)
 
 
