@@ -113,7 +113,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 
 ### Summary
-Our App gives users the ability to sign-up and sign-in securely, get polling info, register to vote with the US government and be able to view specific election information for elections in their area. Then if a user has been validated living in the United States, they will be able to vote directly in the app securely.   
+An application that provides its users with the ability to find information about their favorite anime and manga and organize them in a user personalized list.    
 
 
 ### Walkthrough
@@ -212,6 +212,6 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 Andrew Lee - [linkedin](https://www.linkedin.com/in/andrewjetlee/) - andrewjetlee777@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/AndrewJetLee/anime-archive-client/)
+Project Link: [https://github.com/AndrewJetLee/anime-archive-client/](https://github.com/AndrewJetLee/anime-archive-client/)
 
 
