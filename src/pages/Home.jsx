@@ -14,6 +14,7 @@ const Home = () => {
   const [trendingManga, setTrendingManga] = useState([]);
   const [myElementIsVisible, updateMyElementIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [lazyLoading, setLazyLoading] = useState(false);
 
   useEffect(() => {
     getAllMedia();
@@ -38,8 +39,6 @@ const Home = () => {
       setSeasonalAnime(seasonalAnime.data.data);
       const upcomingAnime = await jikanRequest.get("/seasons/upcoming");
       setUpcomingAnime(upcomingAnime.data.data);
-      const trendingAnime = await jikanRequest.get("/top/anime");
-      setTrendingAnime(trendingAnime.data.data);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -48,8 +47,12 @@ const Home = () => {
 
   const getLazyMedia = async () => {
     try {
+      setLazyLoading(true);
+      const trendingAnime = await jikanRequest.get("/top/anime");
+      setTrendingAnime(trendingAnime.data.data);
       const trendingManga = await jikanRequest.get("/top/manga");
       setTrendingManga(trendingManga.data.data);
+      setLazyLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -75,15 +78,16 @@ const Home = () => {
         <Carousel
           title={"Popular Anime"}
           data={trendingAnime}
-          loading={loading}
+          loading={lazyLoading}
+          myElementIsVisible={myElementIsVisible}
           home={true}
         />
         <Carousel
+         myElementIsVisible={myElementIsVisible}
           innerRef={popularMangaRef}
           title={"Popular Manga"}
           data={trendingManga}
-          loading={loading}
-          myElementIsVisible={myElementIsVisible}
+          loading={lazyLoading}
           home={true}
         />
       </Wrapper>
