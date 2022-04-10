@@ -56,7 +56,7 @@ const Home = () => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <Container>
@@ -77,14 +77,14 @@ const Home = () => {
         />
         <Carousel
           title={"Popular Anime"}
+          innerRef={popularMangaRef}
           data={trendingAnime}
           loading={lazyLoading}
           myElementIsVisible={myElementIsVisible}
           home={true}
         />
         <Carousel
-         myElementIsVisible={myElementIsVisible}
-          innerRef={popularMangaRef}
+          myElementIsVisible={myElementIsVisible}
           title={"Popular Manga"}
           data={trendingManga}
           loading={lazyLoading}
