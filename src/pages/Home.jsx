@@ -29,7 +29,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    getLazyMedia();
+    if (myElementIsVisible) getLazyMedia();
   }, [myElementIsVisible]);
 
   const getAllMedia = async () => {
